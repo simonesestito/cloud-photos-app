@@ -3,6 +3,7 @@ import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/screen/home_screen.dart';
 import 'package:cloud_photos_app/screen/login_screen.dart';
 import 'package:cloud_photos_app/screen/single_image_screen.dart';
+import 'package:cloud_photos_app/screen/upload_photo.dart';
 import 'package:cloud_photos_app/screen/user_details_screen.dart';
 import 'package:cloud_photos_app/screen/user_search_results_screen.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
               const UserSearchResultsScreen(),
           UserDetailsScreen.kRouteName: (_) => const UserDetailsScreen(),
           SingleImageScreen.kRouteName: (_) => const SingleImageScreen(),
+          UploadPhotoScreen.kRouteName: (_) => const UploadPhotoScreen(),
         },
       ),
     );

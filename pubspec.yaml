@@ -41,6 +41,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   fancy_shimmer_image: ^2.0.3
+  animations: ^2.0.11
 
 dev_dependencies:
   flutter_test:

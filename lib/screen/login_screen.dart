@@ -37,7 +37,7 @@ class _LoginStateScreen extends State<LoginScreen> {
               ),
             ),
             const SpacerBox(),
-            ElevatedButton.icon(
+            FloatingActionButton.extended(
               onPressed: _onLogin,
               label: const Text('Login'),
               icon: const Icon(Icons.login),
