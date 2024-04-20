@@ -5,6 +5,7 @@ PreferredSizeWidget createAppBarWithWindowBar({
   Widget? title,
   List<Widget>? actions,
   Color? backgroundColor,
+  bool automaticallyImplyLeading = true,
 }) =>
     WindowTitleBar(
       backgroundColor: backgroundColor,
@@ -12,6 +13,7 @@ PreferredSizeWidget createAppBarWithWindowBar({
         title: title,
         actions: actions,
         backgroundColor: backgroundColor,
+        automaticallyImplyLeading: automaticallyImplyLeading,
       ),
     );
 
