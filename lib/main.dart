@@ -2,6 +2,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/screen/home_screen.dart';
 import 'package:cloud_photos_app/screen/login_screen.dart';
+import 'package:cloud_photos_app/screen/user_details_screen.dart';
 import 'package:cloud_photos_app/screen/user_search_results_screen.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
@@ -30,21 +31,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasLogin = Preferences.instance.getLoginName() != null;
-    final theme = _createTheme();
 
     return WindowBorder(
-      color: theme.primaryColorLight,
-      width: 3,
+      color: Colors.black38,
+      width: 1,
       child: MaterialApp(
-        title: 'Photos App',
-        theme: theme,
+        title: WindowTitleBar.appName,
+        theme: _createTheme(),
         debugShowCheckedModeBanner: false,
-        initialRoute: hasLogin ? '/home' : LoginScreen.kRouteName,
+        initialRoute: hasLogin ? HomeScreen.kRouteName : LoginScreen.kRouteName,
         routes: {
           LoginScreen.kRouteName: (context) => const LoginScreen(),
-          '/home': (context) => const HomeScreen(),
+          HomeScreen.kRouteName: (context) => const HomeScreen(),
           UserSearchResultsScreen.kRouteName: (_) =>
               const UserSearchResultsScreen(),
+          UserDetailsScreen.kRouteName: (_) => const UserDetailsScreen(),
         },
       ),
     );

@@ -6,6 +6,8 @@ import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const kRouteName = '/home';
+
   const HomeScreen({super.key});
 
   @override

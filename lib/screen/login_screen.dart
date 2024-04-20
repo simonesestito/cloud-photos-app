@@ -1,4 +1,5 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
+import 'package:cloud_photos_app/screen/home_screen.dart';
 import 'package:cloud_photos_app/widgets/spacer.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _LoginStateScreen extends State<LoginScreen> {
     await Preferences.instance.setLoginName(loginName);
 
     if (mounted) {
-      Navigator.of(context).pushReplacementNamed('/home');
+      Navigator.of(context).pushReplacementNamed(HomeScreen.kRouteName);
     }
   }
 }

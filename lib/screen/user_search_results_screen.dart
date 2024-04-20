@@ -1,5 +1,6 @@
 import 'package:cloud_photos_app/model/user_summary.dart';
 import 'package:cloud_photos_app/repository/users_repository.dart';
+import 'package:cloud_photos_app/screen/user_details_screen.dart';
 import 'package:cloud_photos_app/widgets/empty_view.dart';
 import 'package:cloud_photos_app/widgets/error.dart';
 import 'package:cloud_photos_app/widgets/loading.dart';
