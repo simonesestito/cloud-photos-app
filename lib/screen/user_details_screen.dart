@@ -40,14 +40,21 @@ class UserDetailsScreen extends StatelessWidget {
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemCount: user.postIds.length,
-      itemBuilder: (context, i) => GestureDetector(
+      itemBuilder: (context, i) =>
+          _buildImageThumbnail(context, user.postIds[i]),
+    );
+  }
+
+  Widget _buildImageThumbnail(BuildContext context, String imageId) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
         child: FancyShimmerImage(
-          imageUrl: PhotosRepository.instance
-              .getThumbnailById(user.postIds[i])
-              .toString(),
+          imageUrl:
+              PhotosRepository.instance.getThumbnailById(imageId).toString(),
           boxFit: BoxFit.cover,
         ),
-        onTap: () => _onImageTap(context, user.postIds[i]),
+        onTap: () => _onImageTap(context, imageId),
       ),
     );
   }
