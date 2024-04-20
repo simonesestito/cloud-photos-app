@@ -6,6 +6,7 @@
 #endif
 
 #include "flutter/generated_plugin_registrant.h"
+#include <bitsdojo_window_linux/bitsdojo_window_plugin.h>
 
 struct _MyApplication {
   GtkApplication parent_instance;
@@ -47,8 +48,16 @@ static void my_application_activate(GApplication* application) {
     gtk_window_set_title(window, "cloud_photos_app");
   }
 
-  gtk_window_set_default_size(window, 1280, 720);
+    /*
+     * From the docs: https://github.com/bitsdojo/bitsdojo_window?tab=readme-ov-file#for-linux-apps
+     */
+    auto bdw = bitsdojo_window_from(window);
+    bdw->setCustomFrame(true);
+    // gtk_window_set_default_size(window, 1280, 720);
   gtk_widget_show(GTK_WIDGET(window));
+
+    auto gdk_window = gtk_widget_get_window(GTK_WIDGET(window));
+    gdk_window_set_decorations(gdk_window, GdkWMDecoration::GDK_DECOR_BORDER);
 
   g_autoptr(FlDartProject) project = fl_dart_project_new();
   fl_dart_project_set_dart_entrypoint_arguments(project, self->dart_entrypoint_arguments);

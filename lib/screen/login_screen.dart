@@ -1,5 +1,6 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/widgets/spacer.dart';
+import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,9 +19,7 @@ class _LoginStateScreen extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
+      appBar: createAppBarWithWindowBar(title: const Text('Login')),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

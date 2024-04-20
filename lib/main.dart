@@ -1,12 +1,23 @@
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/screen/home_screen.dart';
 import 'package:cloud_photos_app/screen/login_screen.dart';
+import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.ensureInitialized();
+
+  // From the docs: https://github.com/bitsdojo/bitsdojo_window?tab=readme-ov-file#flutter-app-integration
+  doWhenWindowReady(() {
+    const initialSize = Size(1000, 800);
+    appWindow.minSize = initialSize;
+    appWindow.size = initialSize;
+    appWindow.alignment = Alignment.center;
+    appWindow.title = WindowTitleBar.appName;
+    appWindow.show();
+  });
 
   runApp(const MyApp());
 }
@@ -18,16 +29,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasLogin = Preferences.instance.getLoginName() != null;
+    final theme = _createTheme();
 
-    return MaterialApp(
-      title: 'Photos App',
-      theme: _createTheme(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: hasLogin ? '/home' : '/login',
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/home': (context) => const HomeScreen(),
-      },
+    return WindowBorder(
+      color: theme.primaryColorLight,
+      width: 3,
+      child: MaterialApp(
+        title: 'Photos App',
+        theme: theme,
+        debugShowCheckedModeBanner: false,
+        initialRoute: hasLogin ? '/home' : '/login',
+        routes: {
+          '/login': (context) => const LoginScreen(),
+          '/home': (context) => const HomeScreen(),
+        },
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/widgets/user_search_bar.dart';
+import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final String loginName = Preferences.instance.getLoginName()!;
     return Scaffold(
-      appBar: AppBar(
+      appBar: createAppBarWithWindowBar(
         title: Text('Hi, $loginName!'),
         actions: [
           IconButton(
