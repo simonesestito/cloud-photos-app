@@ -1,4 +1,5 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget createAppBarWithWindowBar({
@@ -6,16 +7,21 @@ PreferredSizeWidget createAppBarWithWindowBar({
   List<Widget>? actions,
   Color? backgroundColor,
   bool automaticallyImplyLeading = true,
-}) =>
-    WindowTitleBar(
-      backgroundColor: backgroundColor,
-      child: AppBar(
-        title: title,
-        actions: actions,
-        backgroundColor: backgroundColor,
-        automaticallyImplyLeading: automaticallyImplyLeading,
-      ),
-    );
+}) {
+  final appBar = AppBar(
+    title: title,
+    actions: actions,
+    backgroundColor: backgroundColor,
+    automaticallyImplyLeading: automaticallyImplyLeading,
+  );
+
+  if (kIsWeb) return appBar;
+
+  return WindowTitleBar(
+    backgroundColor: backgroundColor,
+    child: appBar,
+  );
+}
 
 class WindowTitleBar extends StatelessWidget implements PreferredSizeWidget {
   static const appName = 'Cloud Photos App';
