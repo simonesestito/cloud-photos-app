@@ -7,8 +7,8 @@ abstract class PhotosRepository {
 }
 
 class _MockPhotosRepository implements PhotosRepository {
-  static const _mockPhotoUrl = 'https://via.placeholder.com/1400';
-  static const _mockThumbnailUrl = 'https://via.placeholder.com/300';
+  static const _mockPhotoUrl = 'https://via.placeholder.com/1400/2E7D32/FFF';
+  static const _mockThumbnailUrl = 'https://via.placeholder.com/300/2E7D32/FFF';
 
   @override
   Uri getPhotoById(String id) => Uri.parse(_randomizeUrl(_mockPhotoUrl));
@@ -19,5 +19,5 @@ class _MockPhotosRepository implements PhotosRepository {
 }
 
 /// Randomize the image URL to avoid caching
-String _randomizeUrl(String url) =>
-    '$url?${DateTime.now().millisecondsSinceEpoch}';
+String _randomizeUrl(String url) => url;
+// => '$url?${DateTime.now().millisecondsSinceEpoch}';

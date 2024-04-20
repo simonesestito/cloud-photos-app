@@ -1,6 +1,7 @@
 import 'package:cloud_photos_app/model/user.dart';
 import 'package:cloud_photos_app/repository/photos_repository.dart';
 import 'package:cloud_photos_app/repository/users_repository.dart';
+import 'package:cloud_photos_app/screen/single_image_screen.dart';
 import 'package:cloud_photos_app/widgets/error.dart';
 import 'package:cloud_photos_app/widgets/loading.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
@@ -39,12 +40,23 @@ class UserDetailsScreen extends StatelessWidget {
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemCount: user.postIds.length,
-      itemBuilder: (context, i) => FancyShimmerImage(
-        imageUrl: PhotosRepository.instance
-            .getThumbnailById(user.postIds[i])
-            .toString(),
-        boxFit: BoxFit.cover,
+      itemBuilder: (context, i) => GestureDetector(
+        child: FancyShimmerImage(
+          imageUrl: PhotosRepository.instance
+              .getThumbnailById(user.postIds[i])
+              .toString(),
+          boxFit: BoxFit.cover,
+        ),
+        onTap: () => _onImageTap(context, user.postIds[i]),
       ),
+    );
+  }
+
+  void _onImageTap(BuildContext context, String imageId) {
+    Navigator.pushNamed(
+      context,
+      SingleImageScreen.kRouteName,
+      arguments: imageId,
     );
   }
 }
