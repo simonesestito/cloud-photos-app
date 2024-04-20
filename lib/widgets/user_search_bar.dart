@@ -44,13 +44,14 @@ class UserSearchBar extends StatelessWidget {
     );
   }
 
-  FutureOr<void> _onSearchPressed(BuildContext context) {
+  FutureOr<void> _onSearchPressed(BuildContext context) async {
     final searchUsername = _searchController.value.text;
     final error = _validateSearchUsername(searchUsername);
     if (error != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(error)),
       );
+      return;
     }
 
     return onSearch(searchUsername);
