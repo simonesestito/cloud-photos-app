@@ -2,6 +2,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/screen/home_screen.dart';
 import 'package:cloud_photos_app/screen/login_screen.dart';
+import 'package:cloud_photos_app/screen/user_search_results_screen.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -38,10 +39,12 @@ class MyApp extends StatelessWidget {
         title: 'Photos App',
         theme: theme,
         debugShowCheckedModeBanner: false,
-        initialRoute: hasLogin ? '/home' : '/login',
+        initialRoute: hasLogin ? '/home' : LoginScreen.kRouteName,
         routes: {
-          '/login': (context) => const LoginScreen(),
+          LoginScreen.kRouteName: (context) => const LoginScreen(),
           '/home': (context) => const HomeScreen(),
+          UserSearchResultsScreen.kRouteName: (_) =>
+              const UserSearchResultsScreen(),
         },
       ),
     );

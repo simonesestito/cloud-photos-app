@@ -4,6 +4,7 @@ import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const kRouteName = '/login';
   static final usernameRegex = RegExp(r'^[a-z0-9_]+$');
 
   const LoginScreen({super.key});

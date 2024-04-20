@@ -1,4 +1,6 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
+import 'package:cloud_photos_app/screen/login_screen.dart';
+import 'package:cloud_photos_app/screen/user_search_results_screen.dart';
 import 'package:cloud_photos_app/widgets/user_search_bar.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,11 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: UserSearchBar(
-        onSearch: (username) {},
+        onSearch: (username) => Navigator.pushNamed(
+          context,
+          UserSearchResultsScreen.kRouteName,
+          arguments: username,
+        ),
       ),
     );
   }
@@ -29,7 +35,7 @@ class HomeScreen extends StatelessWidget {
   Future<void> _onLogout(BuildContext context) async {
     await Preferences.instance.removeLoginName();
     if (context.mounted) {
-      Navigator.of(context).pushReplacementNamed('/login');
+      Navigator.of(context).pushReplacementNamed(LoginScreen.kRouteName);
     }
   }
 }
