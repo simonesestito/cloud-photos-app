@@ -1,4 +1,5 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
+import 'package:cloud_photos_app/widgets/user_search_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,8 +19,8 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Home Screen'),
+      body: UserSearchBar(
+        onSearch: (username) {},
       ),
     );
   }

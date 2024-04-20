@@ -1,7 +1,10 @@
 import 'package:cloud_photos_app/preferences/preferences.dart';
+import 'package:cloud_photos_app/widgets/spacer.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
+  static final usernameRegex = RegExp(r'^[a-z0-9_]+$');
+
   const LoginScreen({super.key});
 
   @override
@@ -27,15 +30,12 @@ class _LoginStateScreen extends State<LoginScreen> {
               key: _formKey,
               child: TextFormField(
                 controller: _loginNameController,
-                decoration: const InputDecoration(
-                  labelText: 'Login Name',
-                  border: OutlineInputBorder(),
-                  filled: true,
-                ),
+                decoration: const InputDecoration(labelText: 'Login Name'),
                 validator: _validateLoginName,
+                onFieldSubmitted: (_) => _onLogin(),
               ),
             ),
-            const SizedBox(height: 24),
+            const SpacerBox(),
             ElevatedButton.icon(
               onPressed: _onLogin,
               label: const Text('Login'),
@@ -57,7 +57,7 @@ class _LoginStateScreen extends State<LoginScreen> {
     }
 
     // Only lowercase ascii letters, digits and underscore are allowed
-    if (!RegExp(r'^[a-z0-9_]+$').hasMatch(value)) {
+    if (!LoginScreen.usernameRegex.hasMatch(value)) {
       return 'Only lowercase letters, digits and underscore are allowed';
     }
 
