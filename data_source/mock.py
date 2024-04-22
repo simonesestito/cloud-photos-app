@@ -36,6 +36,9 @@ class MockUserDataSource(IUserDataSource):
         except StopIteration:
             return None
 
+    def create_if_not_exists(self, username: str) -> None:
+        pass
+
 
 class MockPhotoDataSource(IPhotoDataSource):
     def __init__(self):
