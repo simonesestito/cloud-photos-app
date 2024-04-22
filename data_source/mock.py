@@ -2,7 +2,7 @@ import pathlib
 import time
 from typing import Optional, List
 
-from data_source import IUserDataSource, IPhotoDataSource
+from data_source.interface import IUserDataSource, IPhotoDataSource
 from model import User, UserSummary, PhotoUploadResult
 
 
