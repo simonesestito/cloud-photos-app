@@ -1,13 +1,11 @@
 import pathlib
+from tempfile import NamedTemporaryFile
 from typing import List
 
-from flask import Flask, request, abort
-
-from model import User, UserSummary, PhotoUploadResult
+from flask import Flask, request, abort, Response, jsonify
 
 from data_source import UserDataSource, PhotoDataSource
-
-from tempfile import NamedTemporaryFile
+from model import UserSummary
 
 app = Flask(__name__)
 users = UserDataSource()
@@ -24,16 +22,16 @@ def search_users() -> List[UserSummary]:
 
 
 @app.route('/users/<username>')
-def get_user_by_username(username: str) -> User:
+def get_user_by_username(username: str) -> Response:
     found_user = users.get_user_by_username(username)
     if not found_user:
         abort(404)
 
-    return found_user
+    return jsonify(found_user)
 
 
 @app.route('/photos', methods=['POST'])
-def upload_new_photo() -> PhotoUploadResult:
+def upload_new_photo() -> Response:
     # Handle missing file part
     if 'photo' not in request.files:
         abort(400)
@@ -46,7 +44,8 @@ def upload_new_photo() -> PhotoUploadResult:
     # Use a temporary file for processing
     with NamedTemporaryFile() as tmp:
         photo.save(tmp.name)
-        return photos.upload_photo(pathlib.Path(tmp.name))
+        upload_result = photos.upload_photo(pathlib.Path(tmp.name))
+        return jsonify(upload_result)
 
 
 if __name__ == '__main__':
