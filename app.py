@@ -1,4 +1,5 @@
 import pathlib
+import re
 from tempfile import NamedTemporaryFile
 from typing import List
 
@@ -32,6 +33,16 @@ def get_user_by_username(username: str) -> Response:
 
 @app.route('/photos', methods=['POST'])
 def upload_new_photo() -> Response:
+    # Handle missing "authentication" (just the username, very secure)
+    if 'Authorization' not in request.headers:
+        abort(401)
+
+    username = request.headers.get('Authorization')
+    # Handle invalid username
+    valid_username_regex = re.compile(r'^[a-z0-9_]+$')
+    if not valid_username_regex.match(username):
+        abort(403)  # Forbidden?
+
     # Handle missing file part
     if 'photo' not in request.files:
         abort(400)
