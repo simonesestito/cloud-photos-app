@@ -1,2 +1,5 @@
 /venv
 Dockerfile
+cloud-backend.tar
+cloud-backend.tar.gz
+deploy.sh
