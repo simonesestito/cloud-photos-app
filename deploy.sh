@@ -11,7 +11,7 @@ cd "$(dirname "$0")" || exit
   cd ..
   tar czf cloud-backend.tar cloud-backend/{data_source,model,app.py,Dockerfile,requirements.txt,wsgi.ini,wsgi.py}
   ls -lh cloud-backend.tar
-  scp cloud-backend.tar learnerlab:.
+  scp -o ConnectTimeout=3 cloud-backend.tar learnerlab:.
   rm cloud-backend.tar
 )
 
@@ -26,4 +26,5 @@ ssh learnerlab "docker ps -q --filter name=cloud-backend | xargs docker rm -f" |
 ssh learnerlab "docker run -d --name cloud-backend --restart unless-stopped -p 5000:5000 cloud-backend:latest"
 
 # Test the connection
-curl 'http://3.95.62.66/users?username=cicc' --silent --fail | jq
+VM_IP="$(grep learnerlab ~/.ssh/config -A10 | grep HostName | awk '{print $2}')"
+curl "http://$VM_IP/users?username=cicc" --silent --fail | jq
