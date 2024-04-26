@@ -20,7 +20,7 @@ ssh learnerlab "rm -rf cloud-backend && tar xzf cloud-backend.tar && rm cloud-ba
 ssh learnerlab "cd cloud-backend && docker build -t cloud-backend:latest ."
 
 # Stop remote container if running
-ssh learnerlab "docker ps -q --filter name=cloud-backend | xargs docker rm -f" || true
+ssh learnerlab "docker ps -q -a --filter name=cloud-backend | xargs docker rm -f" || true
 
 # Start container in daemon mode
 ssh learnerlab "docker run -d --name cloud-backend --restart unless-stopped -p 5000:5000 cloud-backend:latest"
