@@ -1,3 +1,4 @@
+import 'package:cloud_photos_app/model/photo_upload_result.dart';
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/repository/photos_repository.dart';
 import 'package:cloud_photos_app/screen/single_image_screen.dart';
@@ -17,13 +18,17 @@ class UploadPhotoScreen extends StatefulWidget {
 
 class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   double _progress = -1;
-  String? _photoId;
+  PhotoUploadResult? _photoUploadResult;
 
   bool get _isPickingFile => _progress == -1;
 
   bool get _isUploading => _progress >= 0 && _progress < 1;
 
-  bool get _isUploadComplete => _progress == 1;
+  bool get _isPending => _photoUploadResult?.status == 'PENDING';
+
+  bool get _isUploadComplete => _photoUploadResult?.status == 'SUCCESS';
+
+  bool get _isError => _photoUploadResult?.status == 'ERROR';
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,9 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   Widget _buildBody() {
     if (_isPickingFile) return _buildFilePicker();
     if (_isUploading) return _buildUploadProgress();
+    if (_isPending) return _buildUploadPending();
     if (_isUploadComplete) return _buildUploadComplete();
+    if (_isError) return _buildError();
     throw StateError('Invalid state: {progress = $_progress}');
   }
 
@@ -62,8 +69,24 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
     PhotosRepository.instance.uploadPhoto(myUsername, file).listen((progress) {
       setState(() {
         _progress = progress.progress;
-        _photoId = progress.photoId;
+        _photoUploadResult = progress.photoUploadResult;
       });
+    }).onDone(() async {
+      // Every 3 seconds, check if the photo is uploaded
+      while (mounted &&
+          (_photoUploadResult == null ||
+              _photoUploadResult?.status == 'PENDING')) {
+        await Future.delayed(const Duration(seconds: 3));
+        if (!mounted) return;
+
+        final photoId = _photoUploadResult!.photoId;
+        final status = await PhotosRepository.instance.getUploadStatus(photoId);
+        if (mounted) {
+          setState(() {
+            _photoUploadResult = status;
+          });
+        }
+      }
     });
   }
 
@@ -74,6 +97,17 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
             CircularProgressIndicator(value: _progress),
             const SizedBox(height: 16),
             Text('${(_progress * 100).toStringAsFixed(0)}%'),
+          ],
+        ),
+      );
+
+  Widget _buildUploadPending() => const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 16),
+            Text('Your photo is being elaborated. Please wait.'),
           ],
         ),
       );
@@ -97,12 +131,30 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
         ),
       );
 
+  Widget _buildError() => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error_outline,
+              size: 48,
+              color: Theme.of(context).colorScheme.error,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              _photoUploadResult!.errorMessage ??
+                  'An error occurred while uploading the photo.',
+            ),
+          ],
+        ),
+      );
+
   void _onOpenUploadedPhoto() {
-    if (_photoId == null || !mounted) return;
+    if (!mounted) return;
     Navigator.pushReplacementNamed(
       context,
       SingleImageScreen.kRouteName,
-      arguments: _photoId!,
+      arguments: _photoUploadResult!.photoId,
     );
   }
 }

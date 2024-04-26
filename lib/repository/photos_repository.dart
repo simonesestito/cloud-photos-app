@@ -1,3 +1,4 @@
+import 'package:cloud_photos_app/model/photo_upload_result.dart';
 import 'package:cloud_photos_app/model/photo_upload_state.dart';
 import 'package:cross_file/cross_file.dart';
 
@@ -9,6 +10,8 @@ abstract class PhotosRepository {
   Uri getThumbnailById(String id);
 
   Stream<PhotoUploadState> uploadPhoto(String username, XFile file);
+
+  Future<PhotoUploadResult> getUploadStatus(String photoId);
 }
 
 class _MockPhotosRepository implements PhotosRepository {
@@ -30,7 +33,23 @@ class _MockPhotosRepository implements PhotosRepository {
       await Future.delayed(const Duration(milliseconds: 350));
       yield PhotoUploadState.progress(progress);
     }
-    yield PhotoUploadState.complete('mock-photo-id');
+    yield PhotoUploadState.complete(PhotoUploadResult(
+      photoId: 'mock-photo-id',
+      status: 'PENDING',
+      timestamp: DateTime.now().toIso8601String(),
+      authorUsername: username,
+    ));
+  }
+
+  @override
+  Future<PhotoUploadResult> getUploadStatus(String photoId) async {
+    await Future.delayed(const Duration(seconds: 3));
+    return PhotoUploadResult(
+      photoId: photoId,
+      status: 'SUCCESS',
+      timestamp: DateTime.now().toIso8601String(),
+      authorUsername: 'mock-username',
+    );
   }
 }
 
