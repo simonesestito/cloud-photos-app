@@ -62,6 +62,14 @@ def upload_new_photo() -> Response:
         return jsonify(upload_result)
 
 
+@app.route('/uploadStatus/<photo_id>')
+def get_upload_status(photo_id: str) -> Response:
+    upload_status = photos.get_photo_upload(photo_id)
+    if not upload_status:
+        abort(404)
+
+    return jsonify(upload_status)
+
 @app.route('/healthcheck')
 def do_healthcheck():
     # TODO: Do a real healthcheck
