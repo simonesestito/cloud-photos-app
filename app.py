@@ -3,6 +3,7 @@ import re
 from tempfile import NamedTemporaryFile
 from typing import List
 
+import flask
 from flask import Flask, request, abort, Response, jsonify
 
 from data_source import UserDataSource, PhotoDataSource
@@ -59,6 +60,12 @@ def upload_new_photo() -> Response:
         photo.save(tmp.name)
         upload_result = photos.upload_photo(pathlib.Path(tmp.name))
         return jsonify(upload_result)
+
+
+@app.route('/healthcheck')
+def do_healthcheck():
+    # TODO: Do a real healthcheck
+    return flask.Response(status=200)
 
 
 if __name__ == '__main__':
