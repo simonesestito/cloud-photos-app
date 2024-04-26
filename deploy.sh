@@ -23,7 +23,7 @@ ssh learnerlab "cd cloud-backend && docker build -t cloud-backend:latest ."
 ssh learnerlab "docker ps -q --filter name=cloud-backend | xargs docker rm -f" || true
 
 # Start container in daemon mode
-ssh learnerlab "docker run -d --name cloud-backend -p 80:5000 cloud-backend:latest"
+ssh learnerlab "docker run -d --name cloud-backend --restart unless-stopped -p 5000:5000 cloud-backend:latest"
 
 # Test the connection
 curl 'http://3.95.62.66/users?username=cicc' --silent --fail | jq
