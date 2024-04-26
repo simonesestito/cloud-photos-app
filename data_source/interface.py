@@ -23,3 +23,7 @@ class IPhotoDataSource(ABC):
     @abstractmethod
     def upload_photo(self, file: pathlib.Path) -> PhotoUploadResult:
         pass
+
+    @abstractmethod
+    def get_photo_upload(self, photo_id: str) -> PhotoUploadResult:
+        pass

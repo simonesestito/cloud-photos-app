@@ -48,4 +48,19 @@ class MockPhotoDataSource(IPhotoDataSource):
         # Do a bit of fake processing for 500ms
         time.sleep(0.5)
 
-        return PhotoUploadResult(photo_id='this-is-fake')
+        return PhotoUploadResult(
+            photo_id='this-is-fake',
+            timestamp='2000-10-31T01:30:00.000-05:00',
+            error_message=None,
+            author_username='ciccio',
+            status='PENDING',
+        )
+
+    def get_photo_upload(self, photo_id: str) -> PhotoUploadResult:
+        return PhotoUploadResult(
+            photo_id=photo_id,
+            timestamp='2000-10-31T01:30:00.000-05:00',
+            error_message=None,
+            author_username='ciccio',
+            status='SUCCESS',
+        )
