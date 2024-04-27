@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:cloud_photos_app/model/photo_upload_result.dart';
 import 'package:cloud_photos_app/model/photo_upload_state.dart';
+import 'package:cloud_photos_app/repository/aws.dart';
 import 'package:cross_file/cross_file.dart';
+import 'package:dio/dio.dart';
 
 abstract class PhotosRepository {
-  static final PhotosRepository instance = _MockPhotosRepository();
+  static final PhotosRepository instance = _AwsPhotosRepository();
 
   Uri getPhotoById(String id);
 
@@ -51,6 +55,74 @@ class _MockPhotosRepository implements PhotosRepository {
       authorUsername: 'mock-username',
     );
   }
+}
+
+class _AwsPhotosRepository implements PhotosRepository {
+  @override
+  Uri getPhotoById(String id) =>
+      Uri.parse('https://resized-images-buck.s3.amazonaws.com/$id-comp.webp');
+
+  @override
+  Future<PhotoUploadResult> getUploadStatus(String photoId) async {
+    final response = await awsHttpClient.get('/uploadStatus/$photoId');
+    if (response.statusCode == 404) {
+      throw Exception('Photo not found');
+    }
+
+    return PhotoUploadResult.fromJson(response.data);
+  }
+
+  @override
+  Stream<PhotoUploadState> uploadPhoto(String username, XFile file) {
+    final StreamController<PhotoUploadState> controller = StreamController();
+
+    _uploadPhoto(
+      username: username,
+      file: file,
+      uploadStateController: controller,
+    );
+
+    return controller.stream;
+  }
+
+  void _uploadPhoto({
+    required String username,
+    required XFile file,
+    required StreamController<PhotoUploadState> uploadStateController,
+  }) async {
+    final multipartFile = await MultipartFile.fromFile(file.path);
+    final fileForm = FormData.fromMap({
+      'photo': multipartFile,
+    });
+
+    try {
+      uploadStateController.add(PhotoUploadState.progress(0));
+
+      final response = await awsHttpClient.post(
+        '/photos',
+        data: fileForm,
+        options: Options(
+          headers: {
+            'Authorization': username,
+          },
+        ),
+        onSendProgress: (sent, total) {
+          final progress = sent / total;
+          uploadStateController.add(PhotoUploadState.progress(progress));
+        },
+      );
+
+      final photoUploadResult = PhotoUploadResult.fromJson(response.data);
+      uploadStateController.add(PhotoUploadState.complete(photoUploadResult));
+      uploadStateController.close();
+    } catch (error, stackTrace) {
+      uploadStateController.addError(error, stackTrace);
+    }
+  }
+
+  @override
+  Uri getThumbnailById(String id) => Uri.parse(
+      'https://thumbnail-images-bucket.s3.amazonaws.com/$id-thumb.webp');
 }
 
 /// Randomize the image URL to avoid caching

@@ -22,7 +22,9 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
 
   bool get _isPickingFile => _progress == -1;
 
-  bool get _isUploading => _progress >= 0 && _progress < 1;
+  bool get _isUploading =>
+      _progress >= 0 && _progress < 1 ||
+      (_progress == 1 && _photoUploadResult == null);
 
   bool get _isPending => _photoUploadResult?.status == 'PENDING';
 
@@ -52,7 +54,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
     if (_isPending) return _buildUploadPending();
     if (_isUploadComplete) return _buildUploadComplete();
     if (_isError) return _buildError();
-    throw StateError('Invalid state: {progress = $_progress}');
+    throw StateError('Invalid state: $_photoUploadResult');
   }
 
   Widget _buildFilePicker() => Padding(
@@ -67,27 +69,53 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
 
     final myUsername = Preferences.instance.getLoginName()!;
     PhotosRepository.instance.uploadPhoto(myUsername, file).listen((progress) {
+      debugPrint('[UploadPhotoScreen] Progress: ${progress.progress}');
+      debugPrint(
+          '[UploadPhotoScreen] Photo upload result: ${progress.photoUploadResult}');
       setState(() {
         _progress = progress.progress;
         _photoUploadResult = progress.photoUploadResult;
       });
-    }).onDone(() async {
-      // Every 3 seconds, check if the photo is uploaded
-      while (mounted &&
+    })
+      ..onDone(() async {
+        // Every 3 seconds, check if the photo is uploaded
+        debugPrint('[UploadPhotoScreen] Starting upload status check');
+        debugPrint(
+            '[UploadPhotoScreen] Photo upload status: ${_photoUploadResult?.status}');
+        debugPrint('[UploadPhotoScreen] Widget mounted: $mounted');
+        while (mounted &&
           (_photoUploadResult == null ||
               _photoUploadResult?.status == 'PENDING')) {
         await Future.delayed(const Duration(seconds: 3));
-        if (!mounted) return;
+          if (!mounted) {
+            debugPrint(
+                '[UploadPhotoScreen] Widget unmounted, stopping upload status check');
+            return;
+          }
 
-        final photoId = _photoUploadResult!.photoId;
+          final photoId = _photoUploadResult!.photoId;
         final status = await PhotosRepository.instance.getUploadStatus(photoId);
-        if (mounted) {
+          debugPrint('[UploadPhotoScreen] Photo upload status: $status');
+          if (mounted) {
           setState(() {
             _photoUploadResult = status;
           });
         }
       }
-    });
+      })
+      ..onError((error, stackTrace) {
+        debugPrint('Error while uploading photo: $error');
+        debugPrintStack(stackTrace: stackTrace);
+        setState(() {
+          _photoUploadResult = PhotoUploadResult(
+            photoId: _photoUploadResult?.photoId ?? '',
+            status: 'ERROR',
+            timestamp: _photoUploadResult?.timestamp ?? '',
+            authorUsername: myUsername,
+            errorMessage: 'Error during upload. Please try again.',
+          );
+        });
+      });
   }
 
   Widget _buildUploadProgress() => Center(
@@ -107,7 +135,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
-            Text('Your photo is being elaborated. Please wait.'),
+            Text('Your photo is otoUploadbeing elaborated. Please wait.'),
           ],
         ),
       );

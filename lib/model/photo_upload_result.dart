@@ -6,11 +6,11 @@ part 'photo_upload_result.g.dart';
 @freezed
 class PhotoUploadResult with _$PhotoUploadResult {
   const factory PhotoUploadResult({
-    required String photoId,
-    required String status,
-    required String timestamp,
-    required String authorUsername,
-    String? errorMessage,
+    @JsonKey(name: 'photo_id') required String photoId,
+    @JsonKey(name: 'status') required String status,
+    @JsonKey(name: 'timestamp') required String timestamp,
+    @JsonKey(name: 'author_username') required String authorUsername,
+    @JsonKey(name: 'error_message') String? errorMessage,
   }) = _PhotoUploadResult;
 
   factory PhotoUploadResult.fromJson(Map<String, dynamic> json) =>
