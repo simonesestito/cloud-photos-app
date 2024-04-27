@@ -135,7 +135,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
-            Text('Your photo is otoUploadbeing elaborated. Please wait.'),
+            Text('Your photo is being elaborated. Please wait.'),
           ],
         ),
       );
