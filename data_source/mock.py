@@ -41,7 +41,7 @@ class MockPhotoDataSource(IPhotoDataSource):
     def __init__(self):
         pass
 
-    def upload_photo(self, file: pathlib.Path) -> PhotoUploadResult:
+    def upload_photo(self, username: str, file: pathlib.Path) -> PhotoUploadResult:
         # Do a bit of fake processing for 500ms
         time.sleep(0.5)
 

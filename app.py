@@ -5,6 +5,7 @@ from typing import List
 
 import flask
 from flask import Flask, request, abort, Response, jsonify
+from werkzeug.utils import secure_filename
 
 from data_source import UserDataSource, PhotoDataSource
 from model import UserSummary
@@ -54,9 +55,10 @@ def upload_new_photo() -> Response:
         abort(400)
 
     # Use a temporary file for processing
-    with NamedTemporaryFile() as tmp:
+    photo_extension = secure_filename(photo.filename).split('.')[-1]
+    with NamedTemporaryFile(suffix=f'.{photo_extension}') as tmp:
         photo.save(tmp.name)
-        upload_result = photos.upload_photo(pathlib.Path(tmp.name))
+        upload_result = photos.upload_photo(username, pathlib.Path(tmp.name))
         return jsonify(upload_result)
 
 
@@ -67,6 +69,7 @@ def get_upload_status(photo_id: str) -> Response:
         abort(404)
 
     return jsonify(upload_status)
+
 
 @app.route('/healthcheck')
 def do_healthcheck():

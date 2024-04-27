@@ -17,7 +17,7 @@ class IUserDataSource(ABC):
 
 class IPhotoDataSource(ABC):
     @abstractmethod
-    def upload_photo(self, file: pathlib.Path) -> PhotoUploadResult:
+    def upload_photo(self, username: str, file: pathlib.Path) -> PhotoUploadResult:
         pass
 
     @abstractmethod

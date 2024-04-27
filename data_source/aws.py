@@ -1,12 +1,17 @@
+import pathlib
+import uuid
+import json
 from collections import defaultdict
 from typing import Optional, List
-
-from data_source.interface import IUserDataSource
-from model import User, UserSummary
+from datetime import datetime
 
 import boto3
 from mypy_boto3_dynamodb import DynamoDBClient
+from mypy_boto3_s3 import S3Client
+from mypy_boto3_stepfunctions import SFNClient
 
+from data_source.interface import IUserDataSource, IPhotoDataSource
+from model import User, UserSummary, PhotoUploadResult
 
 AWS_REGION = 'us-east-1'
 AWS_POST_TABLE_NAME = 'post-table'
@@ -81,3 +86,78 @@ class AwsUserDataSource(IUserDataSource):
                 for item in items_found
             ]
         )
+
+
+AWS_UPLOAD_PHOTOS_BUCKET = 'images-to-resize'
+AWS_PROCESSING_STEP_FUNCTION_ARN = 'arn:aws:states:us-east-1:061197399749:stateMachine:MyStateMachine-yvl2mnamm'
+
+
+class AwsPhotoDataSource(IPhotoDataSource):
+    def __init__(self) -> None:
+        self.dynamodb: DynamoDBClient = boto3.client('dynamodb', region_name=AWS_REGION)
+        self.s3: S3Client = boto3.client('s3', region_name=AWS_REGION)
+        self.stepfunctions: SFNClient = boto3.client('stepfunctions', region_name=AWS_REGION)
+
+    def upload_photo(self, username: str, file: pathlib.Path) -> PhotoUploadResult:
+        photo_id = AwsPhotoDataSource._generate_photo_id()
+        photo_filename = f'{photo_id}{file.suffix}'  # Keep the same file extension
+        timestamp = AwsPhotoDataSource._generate_timestamp()
+
+        # Upload to S3 bucket
+        self.s3.upload_file(str(file.resolve().absolute()), AWS_UPLOAD_PHOTOS_BUCKET, photo_filename)
+
+        # Begin processing
+        self.stepfunctions.start_execution(
+            stateMachineArn=AWS_PROCESSING_STEP_FUNCTION_ARN,
+            name=f'photo_upload_processing_{photo_id}',
+            input=json.dumps({
+                'username': username,
+                's3': AWS_UPLOAD_PHOTOS_BUCKET,
+                'idPhoto': photo_id,
+                'keyPhoto': photo_filename,
+                'ts': timestamp,
+            })
+        )
+
+        return PhotoUploadResult(
+            photo_id=photo_id,
+            status='PENDING',
+            timestamp=timestamp,
+            author_username=username,
+        )
+
+    def get_photo_upload(self, photo_id: str) -> PhotoUploadResult:
+        # Get the status from the DB
+        db_response = self.dynamodb.get_item(
+            TableName=AWS_POST_TABLE_NAME,
+            Key={'ID-post': {'S': photo_id}},
+        )
+
+        if 'Item' not in db_response:
+            # Consider a non-existing task as a pending one,
+            # as if the first Lambda did not execute yet
+            return PhotoUploadResult(
+                photo_id=photo_id,
+                status='PENDING',
+                timestamp=AwsPhotoDataSource._generate_timestamp(),
+                author_username='',
+            )
+
+        # Return the actual result from the database
+        db_item = db_response.get('Item')
+        print(db_item['error'])
+        return PhotoUploadResult(
+            photo_id=photo_id,
+            status=db_item['state']['S'].upper(),
+            timestamp=db_item['ts']['S'],
+            author_username=db_item['username']['S'],
+            error_message=db_item['error']['S'] if 'S' in db_item['error'] else None,
+        )
+
+    @staticmethod
+    def _generate_photo_id() -> str:
+        return uuid.uuid4().hex
+
+    @staticmethod
+    def _generate_timestamp() -> str:
+        return datetime.utcnow().replace(microsecond=0).isoformat()

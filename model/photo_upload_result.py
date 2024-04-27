@@ -8,4 +8,4 @@ class PhotoUploadResult:
     status: str  # PENDING, ERROR, SUCCESS
     timestamp: str  # ISO Timestamp
     author_username: str
-    error_message: Optional[str]
+    error_message: Optional[str] = None
