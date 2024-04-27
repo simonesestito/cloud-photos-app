@@ -14,10 +14,6 @@ class IUserDataSource(ABC):
     def get_user_by_username(self, username: str) -> Optional[User]:
         pass
 
-    @abstractmethod
-    def create_if_not_exists(self, username: str) -> None:
-        pass
-
 
 class IPhotoDataSource(ABC):
     @abstractmethod

@@ -44,8 +44,6 @@ def upload_new_photo() -> Response:
     if not valid_username_regex.match(username):
         abort(403)  # Forbidden?
 
-    users.create_if_not_exists(username)
-
     # Handle missing file part
     if 'photo' not in request.files:
         abort(400)
