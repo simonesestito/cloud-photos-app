@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="141bc4f9-b53f-456c-913a-ae0413300078" name="Changes" comment="Implement UserDataSource on AWS">
+    <list default="true" id="141bc4f9-b53f-456c-913a-ae0413300078" name="Changes" comment="Implement PhotoDataSource on AWS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_source/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_source/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_source/aws.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_source/aws.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_source/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_source/interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_source/mock.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_source/mock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/photo_upload_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/photo_upload_result.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +86,7 @@
       <workItem from="1713859975518" duration="1337000" />
       <workItem from="1713875913974" duration="4943000" />
       <workItem from="1714139006141" duration="2476000" />
-      <workItem from="1714204121492" duration="10911000" />
+      <workItem from="1714204121492" duration="11659000" />
     </task>
     <task id="LOCAL-00001" summary="Create mock Python backend">
       <option name="closed" value="true" />
@@ -207,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714210363748</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implement PhotoDataSource on AWS">
+      <option name="closed" value="true" />
+      <created>1714215336151</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714215336151</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +229,8 @@
     <MESSAGE value="Mock implement step function DTOs for input and output" />
     <MESSAGE value="Mock implement upload status check" />
     <MESSAGE value="Implement UserDataSource on AWS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement UserDataSource on AWS" />
+    <MESSAGE value="Implement PhotoDataSource on AWS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement PhotoDataSource on AWS" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cloud_backend$cloud_backend.coverage" NAME="cloud-backend Coverage Results" MODIFIED="1713774733882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

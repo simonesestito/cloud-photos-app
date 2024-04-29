@@ -73,7 +73,8 @@ def get_upload_status(photo_id: str) -> Response:
 
 @app.route('/healthcheck')
 def do_healthcheck():
-    # TODO: Do a real healthcheck
+    # Check that it's possible to talk to the DB
+    users.search_user('cic')  # It should not raise an exception
     return flask.Response(status=200)
 
 
