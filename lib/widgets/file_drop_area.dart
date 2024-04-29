@@ -1,11 +1,11 @@
+import 'package:cloud_photos_app/app_file.dart';
 import 'package:cloud_photos_app/widgets/labeled_icon.dart';
-import 'package:cross_file/cross_file.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-typedef FileCallback = void Function(XFile file);
+typedef FileCallback = void Function(AppFile file);
 
 class FileDropArea extends StatefulWidget {
   final FileCallback onFileDrop;
@@ -42,7 +42,7 @@ class _FileDropAreaState extends State<FileDropArea> {
           _isDragging = false;
         });
         if (details.files.isNotEmpty) {
-          widget.onFileDrop(details.files.first);
+          widget.onFileDrop(AppFile.fromXFile(details.files.first));
         }
       },
       child: MouseRegion(
@@ -75,7 +75,7 @@ class _FileDropAreaState extends State<FileDropArea> {
     );
 
     if (result != null) {
-      widget.onFileDrop(XFile(result.files.single.path!));
+      widget.onFileDrop(AppFile.fromPlatformFile(result.files.single));
     }
   }
 }

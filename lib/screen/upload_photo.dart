@@ -1,10 +1,10 @@
+import 'package:cloud_photos_app/app_file.dart';
 import 'package:cloud_photos_app/model/photo_upload_result.dart';
 import 'package:cloud_photos_app/preferences/preferences.dart';
 import 'package:cloud_photos_app/repository/photos_repository.dart';
 import 'package:cloud_photos_app/screen/single_image_screen.dart';
 import 'package:cloud_photos_app/widgets/file_drop_area.dart';
 import 'package:cloud_photos_app/widgets/window_title_bar.dart';
-import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 
 class UploadPhotoScreen extends StatefulWidget {
@@ -62,7 +62,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
         child: FileDropArea(onFileDrop: _onFileUpload),
       );
 
-  void _onFileUpload(XFile file) {
+  void _onFileUpload(AppFile file) {
     setState(() {
       _progress = 0;
     });

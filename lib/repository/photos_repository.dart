@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:cloud_photos_app/app_file.dart';
 import 'package:cloud_photos_app/model/photo_upload_result.dart';
 import 'package:cloud_photos_app/model/photo_upload_state.dart';
 import 'package:cloud_photos_app/repository/aws.dart';
-import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
 
 abstract class PhotosRepository {
@@ -13,49 +13,49 @@ abstract class PhotosRepository {
 
   Uri getThumbnailById(String id);
 
-  Stream<PhotoUploadState> uploadPhoto(String username, XFile file);
+  Stream<PhotoUploadState> uploadPhoto(String username, AppFile file);
 
   Future<PhotoUploadResult> getUploadStatus(String photoId);
 }
 
-class _MockPhotosRepository implements PhotosRepository {
-  static const _mockPhotoUrl = 'https://via.placeholder.com/1400/2E7D32/FFF';
-  static const _mockThumbnailUrl = 'https://via.placeholder.com/300/2E7D32/FFF';
-
-  @override
-  Uri getPhotoById(String id) => Uri.parse(_randomizeUrl(_mockPhotoUrl));
-
-  @override
-  Uri getThumbnailById(String id) =>
-      Uri.parse(_randomizeUrl(_mockThumbnailUrl));
-
-  @override
-  Stream<PhotoUploadState> uploadPhoto(String username, XFile file) async* {
-    // Fake progress every 20% in 350ms intervals
-    yield PhotoUploadState.progress(0);
-    for (var progress = 0.2; progress < 1; progress += 0.2) {
-      await Future.delayed(const Duration(milliseconds: 350));
-      yield PhotoUploadState.progress(progress);
-    }
-    yield PhotoUploadState.complete(PhotoUploadResult(
-      photoId: 'mock-photo-id',
-      status: 'PENDING',
-      timestamp: DateTime.now().toIso8601String(),
-      authorUsername: username,
-    ));
-  }
-
-  @override
-  Future<PhotoUploadResult> getUploadStatus(String photoId) async {
-    await Future.delayed(const Duration(seconds: 3));
-    return PhotoUploadResult(
-      photoId: photoId,
-      status: 'SUCCESS',
-      timestamp: DateTime.now().toIso8601String(),
-      authorUsername: 'mock-username',
-    );
-  }
-}
+// class _MockPhotosRepository implements PhotosRepository {
+//   static const _mockPhotoUrl = 'https://via.placeholder.com/1400/2E7D32/FFF';
+//   static const _mockThumbnailUrl = 'https://via.placeholder.com/300/2E7D32/FFF';
+//
+//   @override
+//   Uri getPhotoById(String id) => Uri.parse(_randomizeUrl(_mockPhotoUrl));
+//
+//   @override
+//   Uri getThumbnailById(String id) =>
+//       Uri.parse(_randomizeUrl(_mockThumbnailUrl));
+//
+//   @override
+//   Stream<PhotoUploadState> uploadPhoto(String username, PlatformFile file) async* {
+//     // Fake progress every 20% in 350ms intervals
+//     yield PhotoUploadState.progress(0);
+//     for (var progress = 0.2; progress < 1; progress += 0.2) {
+//       await Future.delayed(const Duration(milliseconds: 350));
+//       yield PhotoUploadState.progress(progress);
+//     }
+//     yield PhotoUploadState.complete(PhotoUploadResult(
+//       photoId: 'mock-photo-id',
+//       status: 'PENDING',
+//       timestamp: DateTime.now().toIso8601String(),
+//       authorUsername: username,
+//     ));
+//   }
+//
+//   @override
+//   Future<PhotoUploadResult> getUploadStatus(String photoId) async {
+//     await Future.delayed(const Duration(seconds: 3));
+//     return PhotoUploadResult(
+//       photoId: photoId,
+//       status: 'SUCCESS',
+//       timestamp: DateTime.now().toIso8601String(),
+//       authorUsername: 'mock-username',
+//     );
+//   }
+// }
 
 class _AwsPhotosRepository implements PhotosRepository {
   @override
@@ -73,7 +73,7 @@ class _AwsPhotosRepository implements PhotosRepository {
   }
 
   @override
-  Stream<PhotoUploadState> uploadPhoto(String username, XFile file) {
+  Stream<PhotoUploadState> uploadPhoto(String username, AppFile file) {
     final StreamController<PhotoUploadState> controller = StreamController();
 
     _uploadPhoto(
@@ -87,10 +87,15 @@ class _AwsPhotosRepository implements PhotosRepository {
 
   void _uploadPhoto({
     required String username,
-    required XFile file,
+    required AppFile file,
     required StreamController<PhotoUploadState> uploadStateController,
   }) async {
-    final multipartFile = await MultipartFile.fromFile(file.path);
+    final filename = file.name;
+    final fileContent = await file.readBytes();
+    final multipartFile = MultipartFile.fromBytes(
+      fileContent,
+      filename: filename,
+    );
     final fileForm = FormData.fromMap({
       'photo': multipartFile,
     });
