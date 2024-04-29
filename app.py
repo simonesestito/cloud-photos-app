@@ -5,12 +5,14 @@ from typing import List
 
 import flask
 from flask import Flask, request, abort, Response, jsonify
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 from data_source import UserDataSource, PhotoDataSource
 from model import UserSummary
 
 app = Flask(__name__)
+CORS(app)  # Allow requests from any domain
 users = UserDataSource()
 photos = PhotoDataSource()
 
