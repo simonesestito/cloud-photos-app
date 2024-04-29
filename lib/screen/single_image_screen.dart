@@ -22,17 +22,23 @@ class SingleImageScreen extends StatelessWidget {
             child: FancyShimmerImage(
               imageUrl:
                   PhotosRepository.instance.getPhotoById(imageId).toString(),
-              boxFit: BoxFit.cover,
+              boxFit: BoxFit.contain,
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: createAppBarWithWindowBar(
-              backgroundColor: Colors.white.withAlpha(180),
-            ),
+            child: _buildAppBar(),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildAppBar() {
+    // On web, the app bar breaks if put inside of the simple Stack
+    final appBar = createAppBarWithWindowBar(
+      backgroundColor: Colors.white.withAlpha(180),
+    );
+    return SizedBox.fromSize(size: appBar.preferredSize, child: appBar);
   }
 }
