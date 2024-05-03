@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="141bc4f9-b53f-456c-913a-ae0413300078" name="Changes" comment="Add Werkzeug==3.0.2 to requirements">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ec2-benchmarking/lib/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ec2-benchmarking/lib/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ec2-benchmarking/lib/user-simulator.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ec2-benchmarking/lib/user-simulator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ec2-benchmarking/scripts/benchmark/benchmark.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ec2-benchmarking/scripts/benchmark/benchmark.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ec2-benchmarking/scripts/user-simulation/user-simulation.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ec2-benchmarking/scripts/user-simulation/user-simulation.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -45,19 +48,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask server.cloud-backend.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask server.cloud-backend.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/simone/Documenti/Cloud Computing/cloud-photos-app/flask-ec2-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="cloud-backend" type="Python.FlaskServer">
       <module name="cloud-backend" />
@@ -79,8 +83,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
-        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -102,6 +106,7 @@
       <workItem from="1714404628550" duration="327000" />
       <workItem from="1714481735463" duration="17000" />
       <workItem from="1714482616659" duration="3834000" />
+      <workItem from="1714727129081" duration="25000" />
     </task>
     <task id="LOCAL-00001" summary="Create mock Python backend">
       <option name="closed" value="true" />

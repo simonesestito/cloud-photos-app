@@ -11,7 +11,7 @@ import (
 )
 
 const totalSeconds = 60
-const targetUrl = "http://CloudProd-ELB-1744064738.us-east-1.elb.amazonaws.com/healthcheck"
+const targetUrl = "/healthcheck"
 
 var requestTimes []int
 

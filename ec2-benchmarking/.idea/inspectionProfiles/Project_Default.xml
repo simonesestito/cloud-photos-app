@@ -27,6 +27,7 @@
         <method importPath="strings" receiver="*Builder" name="WriteString" />
         <method importPath="os" receiver="*File" name="Sync" />
         <method importPath="io" receiver="ReadCloser" name="Close" />
+        <method importPath="os" receiver="*File" name="Close" />
       </methods>
     </inspection_tool>
     <inspection_tool class="HttpUrlsUsage" enabled="true" level="WEAK WARNING" enabled_by_default="true">
