@@ -16,5 +16,5 @@ compile_go() {
 
 set -x
 
-compile_go scripts/benchmark.go
-# TODO: compile_go scripts/user-simulation.go
+compile_go scripts/benchmark/benchmark.go
+compile_go scripts/user-simulation/user-simulation.go
