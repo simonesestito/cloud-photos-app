@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const parallelUsers = 1 // 20
+const parallelUsers = 20
 
 func main() {
 	// A single instance of the script runs 20 users
