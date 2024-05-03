@@ -204,13 +204,22 @@ func (u *UserSimulation) Run() {
 			nextState = u.waitPhotoUpload()
 		}
 
-		if u.currentState == waitPhotoUploadState && nextState == waitPhotoUploadState {
-			// In this case, we need to wait 5 seconds before retrying
-			time.Sleep(5 * time.Second)
-		} else if nextState != startState {
+		var lastRequestTime int
+		u.durationsMutex.Lock()
+		if len(u.durations) > 0 {
+			lastRequestTime = u.durations[len(u.durations)-1]
+		} else {
+			lastRequestTime = 0
+		}
+		u.durationsMutex.Unlock()
+
+		if nextState != startState && lastRequestTime > -1 {
 			// Wait 1 second before transitioning to the next state,
 			// to simulate a user thinking about what to do next,
-			// except when going back to the start state
+			// except when going back to the start state.
+			//
+			// Also, do not wait if the last request failed,
+			// since we need to stress test the system.
 			time.Sleep(1 * time.Second)
 		}
 		u.currentState = nextState
