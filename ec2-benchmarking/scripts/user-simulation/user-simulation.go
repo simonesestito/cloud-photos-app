@@ -23,7 +23,7 @@ func main() {
 	// Every minute, we want to collect statistics and print them
 	for {
 		// Wait
-		time.Sleep(20 * time.Second)
+		time.Sleep(60 * time.Second)
 
 		// Get the current time, as HH:MM:SS
 		currentTime := time.Now().Format("15:04:05")
