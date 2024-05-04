@@ -46,21 +46,6 @@ func sendRequest() {
 	// Replace 'YOUR_STATE_MACHINE_ARN' with the ARN of your Step Function state machine
 	stateMachineArn := "arn:aws:states:us-east-1:061197399749:stateMachine:MyStateMachine-yvl2mnamm"
 
-	
-	inputs := []string{
-		    "pistola.jpg",
-			"sera.jpg",
-			"albero.jpg",
-			"lago.jpg",
-			"luna.jpg",
-			"soffione.jpg",
-			"torreEifel.jpg",
-			"albero.jpg",
-			"girasoli.jpg",
-			"conigli.jpg",
-			"mare.jpg",	
-	}
-
 	// Generate a random number between 0 and 9
 	rand.Seed(time.Now().UnixNano())
 	randomNum := rand.Intn(10)
