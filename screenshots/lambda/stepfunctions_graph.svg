@@ -1,0 +1,228 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "https://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" class="sc-cezyBN bcmetk graph" data-testid="graph" role="img" aria-labelledby="polymath-graph-title" width="454" height="416"><title id="polymath-graph-title">Workflow Studio State Machine Graph</title><g transform="translate(12,12)" class="new-look-graph"><g class="nodes"><g class="node-container" transform="translate(207.5,22)"><g><circle class="sc-bDpDS cvJDZh shape" r="22"/><text class="sc-kzqdkY dHDlVi label"><tspan xml:space="preserve" text-anchor="middle" alignment-baseline="central">Start</tspan></text></g></g><g class="node-container" transform="translate(207.5,103.5)"><g class="sc-kbousE lnFbVp node state Task" data-testid="graph-Lambda detect and store" data-state-id="Lambda detect and store" data-state-type="Task"><g class="new-look-state-node "><rect x="-120" y="-24.5" width="240" height="49" rx="3" ry="3"/><g class="handle" transform="translate(-120,-24.5)"><path d="M5,16 L5,34 M8,16 L8,34"/></g><g class="icon" transform="translate(-104,-24)"><rect fill="var(--color-background-container-header-ni4jv3, #fafafa)" x="0.0361026108" y="0.0181291967" width="48" height="48"/><line x1="47.5" y1="0.49122807" x2="47.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><line x1="0.5" y1="0.49122807" x2="0.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><use href="#icon-service-lam" aria-hidden="true"><title>Lambda</title></use></g><g class="text-lines" transform="translate(-48,-24.5)"><text transform="translate(0,17)" class="line1"><tspan xml:space="preserve" text-anchor="start">Lambda: Invoke</tspan></text><text transform="translate(0,35.5)" class="line2 label"><tspan xml:space="preserve" text-anchor="start">Lambda detect and store</tspan></text></g></g></g></g><g class="node-container" transform="translate(310,187.5)"><g class="sc-kbousE lnFbVp node state Task" data-testid="graph-Lambda resize" data-state-id="Lambda resize" data-state-type="Task"><g class="new-look-state-node "><rect x="-120" y="-24.5" width="240" height="49" rx="3" ry="3"/><g class="handle" transform="translate(-120,-24.5)"><path d="M5,16 L5,34 M8,16 L8,34"/></g><g class="icon" transform="translate(-104,-24)"><rect fill="var(--color-background-container-header-ni4jv3, #fafafa)" x="0.0361026108" y="0.0181291967" width="48" height="48"/><line x1="47.5" y1="0.49122807" x2="47.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><line x1="0.5" y1="0.49122807" x2="0.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><use href="#icon-service-lam" aria-hidden="true"><title>Lambda</title></use></g><g class="text-lines" transform="translate(-48,-24.5)"><text transform="translate(0,17)" class="line1"><tspan xml:space="preserve" text-anchor="start">Lambda: Invoke</tspan></text><text transform="translate(0,35.5)" class="line2 label"><tspan xml:space="preserve" text-anchor="start">Lambda resize</tspan></text></g></g></g></g><g class="node-container" transform="translate(120,288)"><g class="sc-kbousE lnFbVp node state Task" data-testid="graph-Lambda catch" data-state-id="Lambda catch" data-state-type="Task"><g class="new-look-state-node "><rect x="-120" y="-24.5" width="240" height="49" rx="3" ry="3"/><g class="handle" transform="translate(-120,-24.5)"><path d="M5,16 L5,34 M8,16 L8,34"/></g><g class="icon" transform="translate(-104,-24)"><rect fill="var(--color-background-container-header-ni4jv3, #fafafa)" x="0.0361026108" y="0.0181291967" width="48" height="48"/><line x1="47.5" y1="0.49122807" x2="47.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><line x1="0.5" y1="0.49122807" x2="0.5" y2="47.5" stroke="var(--color-board-placeholder-active-ekuw58, #d5dbdb)" stroke-linecap="square"/><use href="#icon-service-lam" aria-hidden="true"><title>Lambda</title></use></g><g class="text-lines" transform="translate(-48,-24.5)"><text transform="translate(0,17)" class="line1"><tspan xml:space="preserve" text-anchor="start">Lambda: Invoke</tspan></text><text transform="translate(0,35.5)" class="line2 label"><tspan xml:space="preserve" text-anchor="start">Lambda catch</tspan></text></g></g></g></g><g class="node-container" transform="translate(207.5,369.5)"><g><circle class="sc-bDpDS cvJDZh shape" r="22"/><text class="sc-kzqdkY dHDlVi label"><tspan xml:space="preserve" text-anchor="middle" alignment-baseline="central">End</tspan></text></g></g></g><g class="edges"><g class="sc-sLsrZ cWvSKN edge"><path id="state-Lambda detect and store:state-Lambda resize:normal" d="M267.2916666666667,128L274.40972222222223,130.91666666666666C281.52777777777777,133.83333333333334,295.7638888888889,139.66666666666666,302.88194444444446,145.5C310,151.33333333333334,310,157.16666666666666,310,160.08333333333334L310,163" marker-end="url(#arrowhead)" fill="none"/></g><g class="sc-sLsrZ cWvSKN edge"><path id="state-Lambda detect and store:state-Lambda catch:catch:0" d="M147.70833333333334,128L140.5902777777778,130.91666666666666C133.47222222222223,133.83333333333334,119.23611111111113,139.66666666666666,112.11805555555556,149.58333333333334C105,159.5,105,173.5,105,188.875C105,204.25,105,221,106.28109452736318,233.66666666666666C107.56218905472637,246.33333333333334,110.12437810945273,254.91666666666666,111.40547263681593,259.2083333333333L112.68656716417911,263.5" marker-end="url(#arrowhead)" fill="none"/><g data-testid="graph-Lambda detect and store-0" class="edge-label" transform="translate(112.11805555555556,149.58333333333334)"><rect x="-25" y="-8.25" width="50" height="16.5" class="sc-dBmzty jQHxVU"/><text class="sc-fifgRP eXUWpp label"><tspan xml:space="preserve" text-anchor="middle" alignment-baseline="central">Catch #1</tspan><title>Catch #1</title></text></g></g><g class="sc-sLsrZ cWvSKN edge"><path id="start:state-Lambda detect and store" d="M207.5,44L207.5,46.916666666666664C207.5,49.833333333333336,207.5,55.666666666666664,207.5,61.5C207.5,67.33333333333333,207.5,73.16666666666667,207.5,76.08333333333333L207.5,79" marker-end="url(#arrowhead)" fill="none"/></g><g class="sc-sLsrZ cWvSKN edge"><path id="state-Lambda catch:end:normal" d="M120,312.5L120,315.4166666666667C120,318.3333333333333,120,324.1666666666667,131.24141009868458,332.1580270350252C142.48282019736914,340.1493874033838,164.9656403947383,350.2987748067676,176.20705049342288,355.37346850845944L187.44846059210744,360.44816221015134" marker-end="url(#arrowhead)" fill="none"/></g><g class="sc-sLsrZ cWvSKN edge"><path id="state-Lambda resize:end:normal" d="M329.50248756218906,212L332.9187396351576,216.29166666666666C336.33499170812604,220.58333333333334,343.167495854063,229.16666666666666,346.58374792703154,241.83333333333334C350,254.5,350,271.25,350,286.625C350,302,350,316,329.78343134669933,328.60389096003775C309.56686269339866,341.20778192007543,269.1337253867974,352.4155638401509,248.91715673349668,358.01945480018867L228.70058808019604,363.62334576022636" marker-end="url(#arrowhead)" fill="none"/></g><g class="sc-sLsrZ cWvSKN edge"><path id="state-Lambda resize:state-Lambda catch:catch:0" d="M267.33830845771143,212L259.8652570480929,216.29166666666666C252.39220563847428,220.58333333333334,237.44610281923715,229.16666666666666,221.21890547263683,237.75C204.9917081260365,246.33333333333334,187.48341625207297,254.91666666666666,178.7292703150912,259.2083333333333L169.97512437810946,263.5" marker-end="url(#arrowhead)" fill="none"/><g data-testid="graph-Lambda resize-0" class="edge-label" transform="translate(221.21890547263683,237.75)"><rect x="-25" y="-8.25" width="50" height="16.5" class="sc-dBmzty jQHxVU"/><text class="sc-fifgRP eXUWpp label"><tspan xml:space="preserve" text-anchor="middle" alignment-baseline="central">Catch #1</tspan><title>Catch #1</title></text></g></g></g><defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 8 3, 0 6"/></marker><marker id="highlighted-arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 6 2, 0 4"/></marker><marker id="error-arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 6 2, 0 4"/></marker><marker id="large-arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 10 4, 0 8"/></marker><marker id="large-highlighted-arrowhead" markerWidth="5.5" markerHeight="4" refX="4.5" refY="2" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 5.5 2, 0 4"/></marker><marker id="large-error-arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" class="sc-gdyeKB enQuJ"><polygon points="0 0, 10 4, 0 8"/></marker><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-orange"><stop stop-color="#C8511B" offset="0%"/><stop stop-color="#FF9900" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-turquoise"><stop stop-color="#055F4E" offset="0%"/><stop stop-color="#56C0A7" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-blue"><stop stop-color="#2E27AD" offset="0%"/><stop stop-color="#527FFF" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-pink"><stop stop-color="#B0084D" offset="0%"/><stop stop-color="#FF4F8B" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-red"><stop stop-color="#BD0816" offset="0%"/><stop stop-color="#FF5252" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-green"><stop stop-color="#1B660F" offset="0%"/><stop stop-color="#6CAE3E" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-purple"><stop stop-color="#4D27A8" offset="0%"/><stop stop-color="#A166FF" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-grey"><stop stop-color="#DCDCDC" offset="0%"/><stop stop-color="#F6F5F7" offset="100%"/></linearGradient>,<linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-ag"><stop stop-color="#BC1356" offset="0%"/><stop stop-color="#F34482" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-athena"><stop stop-color="#5930B5" offset="0%"/><stop stop-color="#945DF2" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-emr"><stop stop-color="#5930B5" offset="0%"/><stop stop-color="#945DF2" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-glue"><stop stop-color="#5930B5" offset="0%"/><stop stop-color="#945DF2" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-sns"><stop stop-color="#BC1356" offset="0%"/><stop stop-color="#F34482" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-states"><stop stop-color="#BC1356" offset="0%"/><stop stop-color="#F34482" offset="100%"/></linearGradient><linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="gradient-generic"><stop stop-color="#ccc" offset="0%"/><stop stop-color="#ddd" offset="100%"/></linearGradient><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" id="icon-service-lam"><polygon fill="url(#gradient-orange)" fill-rule="nonzero" points="0 0 48 0 48 48 0 48"/><g transform="translate(11, 10)" fill="#FFFFFF"><path d="M26.5889213,27.8937088 L19.6925948,27.8937088 C19.4772752,27.8931074 19.2813916,27.7706914 19.1888047,27.578869 L9.43766764,7.45673404 L5.31218659,7.45673404 C5.00303594,7.45673404 4.75241983,7.20943823 4.75241983,6.90438337 L4.75241983,0.828526005 C4.75241983,0.523471153 5.00303594,0.276175335 5.31218659,0.276175335 L13.9325948,0.276175335 C14.1479143,0.276776788 14.3437979,0.399192787 14.4363848,0.591015217 L24.1427405,20.7131501 L26.5889213,20.7131501 C26.8980719,20.7131501 27.148688,20.9604459 27.148688,21.2655008 L27.148688,27.3413582 C27.148688,27.646413 26.8980719,27.8937088 26.5889213,27.8937088 Z M20.0452478,26.7890075 L26.0291545,26.7890075 L26.0291545,21.8178515 L23.7900875,21.8178515 C23.5747679,21.81725 23.3788843,21.694834 23.2862974,21.5030116 L13.5799417,1.38087667 L5.87755102,1.38087667 L5.87755102,6.3520327 L9.79591837,6.3520327 C10.0112379,6.35263416 10.2071215,6.47505016 10.2997085,6.66687259 L20.0452478,26.7890075 Z"/><path d="M8.10542274,27.8937099 L0.82845481,27.8937099 C0.635054571,27.8940907 0.455155006,27.7959347 0.352653061,27.634104 C0.243858391,27.4681848 0.233185428,27.2575536 0.324664723,27.0817533 L7.93749271,11.3894708 C8.03007964,11.1976484 8.22596323,11.0752324 8.4412828,11.0746298 L8.4412828,11.0746298 C8.65533487,11.0742082 8.85089022,11.1942751 8.94507289,11.3839473 L12.5891545,18.7799228 C12.6634688,18.931712 12.6634688,19.1086786 12.5891545,19.2604679 L8.6148105,27.5457279 C8.53147526,27.7523199 8.33072312,27.8894609 8.10542274,27.8937099 L8.10542274,27.8937099 Z M1.72408163,26.7890075 L7.75276968,26.7890075 L11.4640233,19.0560981 L8.44688047,12.8973881 L1.72408163,26.7890075 Z"/></g></g></defs></g><style data-styled="true" data-styled-version="5.3.11">.lnFbVp{cursor:pointer;}/*!sc*/
+data-styled.g104[id="sc-kbousE"]{content:"lnFbVp,"}/*!sc*/
+.cWvSKN{stroke:#555;background-color:#555;stroke-width:1px;}/*!sc*/
+data-styled.g105[id="sc-sLsrZ"]{content:"cWvSKN,"}/*!sc*/
+.jQHxVU{stroke-width:0;stroke:none;fill:#f2f3f3;}/*!sc*/
+data-styled.g106[id="sc-dBmzty"]{content:"jQHxVU,"}/*!sc*/
+.eXUWpp{font-size:10px;line-height:12.5;stroke:none;}/*!sc*/
+data-styled.g107[id="sc-fifgRP"]{content:"eXUWpp,"}/*!sc*/
+.enQuJ{fill:var(--color-text-form-secondary-rh78tu,#687078);}/*!sc*/
+data-styled.g118[id="sc-gdyeKB"]{content:"enQuJ,"}/*!sc*/
+.dHDlVi{font-weight:400;font-size:12px;line-height:16px;font-family:Amazon Ember,Arial,Roboto,Arial,sans-serif;text-shadow:none;fill:var(--color-text-button-primary-default-ljg1xz,#16191f);}/*!sc*/
+data-styled.g119[id="sc-kzqdkY"]{content:"dHDlVi,"}/*!sc*/
+.cvJDZh{fill:#fff9cc;stroke:var(--color-text-form-secondary-rh78tu,#687078);stroke-width:0.6px;}/*!sc*/
+data-styled.g120[id="sc-bDpDS"]{content:"cvJDZh,"}/*!sc*/
+</style><style>
+.new-look-state-node &gt; rect:first-of-type {
+  stroke: #687078;
+  stroke-width: 1px;
+  fill: #FFFFFF;
+}
+
+.new-look-state-node .error-icon circle {
+ stroke-linejoin: round;
+}
+
+.new-look-state-node .error-icon circle, .new-look-state-node .error-icon path {
+ stroke: var(--color-border-status-error-xj05xm, #d13212);
+ fill: none;
+ stroke-width: 2px;
+}
+
+.new-look-state-node.has-errors &gt; rect:first-of-type {
+ stroke: var(--color-border-status-error-xj05xm, #d13212);
+ fill: var(--color-background-status-error-oemu7d, #fdf3f1);
+}
+
+.new-look-state-node.has-errors &gt; .bounding-box &gt; .new-look-state-node-sub &gt; rect {
+  stroke: var(--color-border-status-error-xj05xm, #d13212);
+  fill: var(--color-background-status-error-oemu7d, #fdf3f1);
+}
+
+.new-look-state-node .handle path {
+  stroke: var(--color-border-dropdown-item-hover-gqjku2, #879596);
+  stroke-width: 1px;
+  fill: none;
+}
+
+.new-look-state-node {
+  font-weight: 400;
+  font-family: Amazon Ember, Arial, Roboto, Arial, sans-serif;
+  text-shadow: none;
+}
+
+.new-look-state-node .line1 {
+  fill: #687078;
+  font-size: 12px;
+}
+
+.new-look-state-node .line2 {
+  fill: #16191f;
+}
+
+.selected.node &gt; .new-look-state-node &gt; rect,
+.selected.node &gt; .new-look-state-node &gt; .new-look-state-node &gt; rect,
+.selected.node &gt; .new-look-state-node &gt; .bounding-box &gt; rect,
+.selected.node &gt; .new-look-state-node.has-errors &gt; rect,
+.selected.node &gt; .new-look-state-node.has-errors &gt; .bounding-box &gt; rect,
+.selected.node &gt; .new-look-state-node.has-errors &gt; .new-look-state-node &gt; rect,
+.selected.node &gt; .new-look-state-node &gt; .bounding-box &gt; .new-look-state-node-sub &gt; rect
+ {
+  stroke: var(--color-border-status-info-q9np44, #0073bb);
+  fill: var(--color-background-status-info-pgxhez, #f1faff);
+  stroke-width: 1px;
+}
+
+.new-look-state-node-sub .item-source.not-specified {
+  height: 15px;
+  color: #687078;
+  font-family: "Amazon Ember";
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 16px;
+  font-weight: 400;
+}
+.new-look-state-node-sub .item-source .item-source_name{
+  font-weight: 600;
+}
+.new-look-state-node-sub .item-source.not-specified .item-source_name{
+  font-weight: 400;
+}
+
+.new-look-state-node-sub .item-source.not-specified {
+  font-style: italic;
+}
+
+.new-look-state-node-sub &gt; rect,
+.new-look-state-node &gt; .bounding-box &gt; rect {
+  stroke: var(--color-border-control-default-8uhjl0, #687078);
+  fill: #ffffff;
+}
+
+.new-look-graph .drag-source {
+  opacity: 0.2;
+}
+
+.new-look-graph .edge, .new-look-graph path.starting-connection {
+  stroke-width: 1px;
+  stroke: var(--color-text-form-secondary-rh78tu, #687078);
+  marker-end: url(#large-arrowhead);
+}
+
+.new-look-graph .edge-label {
+  cursor: pointer;
+}
+
+.new-look-graph .edge-label rect {
+  stroke-width: 1px;
+  stroke: var(--color-border-control-default-8uhjl0, #687078);
+  fill: #fafafa;
+}
+
+.new-look-graph .edge-label.selected rect {
+  stroke: var(--color-border-status-info-q9np44, #0073bb);
+  fill: var(--color-background-status-info-pgxhez, #f1faff);
+  stroke-width: 0.6px;
+}
+
+
+
+.new-look-graph .edge-label .label {
+  fill: var(--color-text-form-secondary-rh78tu, #687078);
+  font-family: Amazon Ember, Arial, Roboto, Arial, sans-serif;
+}
+
+/* centering the shape text */
+@-moz-document url-prefix() {
+  .new-look-graph .shape + text,
+  .new-look-graph .edge-label text {
+    transform: translateY(3.5px);
+  }
+}
+
+.new-look-graph .edge path {
+  marker-end: url(#large-arrowhead) !important;
+}
+
+.new-look-graph .edge.selected path{
+  stroke: var(--color-border-status-info-q9np44, #0073bb);
+  stroke-width: 1.1px;
+}
+
+.new-look-graph .edge.dragging-over path, .new-look-graph  g.dragging-over .starting-connection {
+  stroke: #5C86FF;
+  stroke-width: 2px;
+}
+
+.new-look-graph .edge.dragging-over path, .new-look-graph .dragging-over path.starting-connection {
+  marker-end: url(#large-highlighted-arrowhead) !important;
+}
+
+.new-look-graph .edge.dragging-over .edge-label text {
+  fill: #5C86FF;
+}
+
+#large-highlighted-arrowhead {
+  fill: #5C86FF;
+}
+
+#large-highlighted-arrowhead path {
+  stroke: none;
+}
+
+.new-look-graph .edge.drop-not-supported path, g.drop-not-supported .starting-connection {
+  stroke: red;
+}
+
+.new-look-graph .edge.drop-not-supported .edge-label text {
+  fill: red;
+}
+
+.new-look-graph .edge.drop-not-supported path {
+  marker-end: url(#large-error-arrowhead) !important;
+}
+
+#large-error-arrowhead {
+  fill: red;
+}
+
+.node-container * &gt; .icon  {
+  &gt; rect {
+    fill: #fafafa;
+  }
+  &gt; line {
+    stroke: #d5dbdb;
+  }
+}
+
+
+.node.Placeholder.dragging-over rect {
+  stroke: var(--color-border-status-info-q9np44, #0073bb);
+  fill: var(--color-background-status-info-pgxhez, #f1faff);
+  stroke-width: 2px;
+}
+
+.node.Placeholder.dragging-over .label {
+  fill: var(--color-text-status-info-aq7yd6, #0073bb);
+}
+
+g.Placeholder rect {
+  stroke-dasharray: 5 4;
+  stroke: var(--color-border-dropdown-item-hover-gqjku2, #879596);
+  fill: #ffffff;
+  stroke-width: 1px;
+}
+
+g.Placeholder .label {
+  font-style: italic;
+  fill: var(--color-text-input-placeholder-epedqe, #687078);
+}
+
+.node.Placeholder.drop-not-supported rect {
+  stroke: red;
+}
+
+.node.Placeholder.drop-not-supported .label {
+  fill: red;
+}
+</style><style>.line2 { font-size: 14px }</style></svg>
