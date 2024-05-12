@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     username = event['username']   
     ts= event['ts']
 
-
+    print(f"bucket: {bucket} key: {key} region: {region} idPhoto: {idPhoto} username: {username} ts: {ts}")
     s3 = boto3.client('s3', region_name=region)
     dynamodb = boto3.resource("dynamodb")
     table_name = os.environ["TABLE_NAME"]
