@@ -9,7 +9,7 @@ import (
 const parallelUsers = 10
 
 func main() {
-	// A single instance of the script runs 20 users
+	// A single instance of the script runs 20 user
 	users := make([]*lib.UserSimulation, parallelUsers)
 	for i := 0; i < parallelUsers; i++ {
 		users[i] = lib.NewUserSimulation()
