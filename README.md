@@ -1,5 +1,14 @@
 # Cloud Photos App project
 
+<div align="center">
+   <b>AWS scalable project for a photo sharing Flutter app.</b>
+</div>
+<hr>
+
+
+[![Download report (PDF)](.github/assets/Download_report_pdf.svg)](report.pdf?raw=true)
+
+
 Folder structure:
 - **cloud_photos_app**: Flutter source code for the client multi-platform application we developed
 - **ec2-benchmarking**: custom tool written in Go to simulate user activities with an implementation of a Markov chain
